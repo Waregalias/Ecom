@@ -3,6 +3,7 @@ package storage;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 public class DaoJPA<T> implements Dao<T>  {
@@ -11,6 +12,7 @@ public class DaoJPA<T> implements Dao<T>  {
 	private EntityManager cat;
 	public DaoJPA() {
 		System.out.println("=============== OUTPUT Source::JPA ===============");
+		cat = Persistence.createEntityManagerFactory("zoo").createEntityManager();
 	}
 	
 	@Override
