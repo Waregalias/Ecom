@@ -4,9 +4,7 @@ import java.util.List;
 
 import service.CategoriePOJO;
 import storage.Dao;
-import storage.DaoFactory;
 import storage.DaoJPA;
-import storage.DaoType;
 
 public class Manager {
 
