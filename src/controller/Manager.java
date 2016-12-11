@@ -22,7 +22,7 @@ public class Manager {
 	
 	public void init() {
 		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) getInstance().dao;
+		dao = (Dao<LivrePOJO>) this.dao;
 		
 		List<LivrePOJO> tmp = null;
 		tmp = (List<LivrePOJO>) dao.selectAll();
@@ -32,8 +32,7 @@ public class Manager {
 		}
 	}
 	
-	public String[] afficherLivres() {
-		return null;
-		
+	public List<Livre> afficherLivres() {
+		return lesLivres;
 	}
 }

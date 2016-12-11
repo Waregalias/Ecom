@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="produit")
 @NamedQueries ({
-	@NamedQuery(name="All", query="SELECT livre FROM LivrePOJO livre"),
-	@NamedQuery(name="Select", query="SELECT livre FROM LivrePOJO livre WHERE categorie.id = :key")
+	@NamedQuery(name="produit.All", query="SELECT livre FROM LivrePOJO livre"),
+	@NamedQuery(name="produit.Select", query="SELECT livre FROM LivrePOJO livre WHERE livre.id = :cle")
 })
 public class LivrePOJO implements Serializable {
 	private static final long serialVersionUID = 1L;

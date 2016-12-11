@@ -2,6 +2,7 @@ package model;
 
 import service.LivrePOJO;
 import storage.Dao;
+import utilitaire.Conversion;
 
 public class Livre {
 	private String nom;
@@ -11,7 +12,7 @@ public class Livre {
 	private String image;
 	
 	private int cle;
-	private Livre modele;
+	private Livre model;
 	private LivrePOJO pojo;
 	private Dao<LivrePOJO> dao;
 
@@ -23,6 +24,16 @@ public class Livre {
 		cle = id;
 		dao = d;
 		pojo = d.select(id);
+		model = Conversion.pojoToLivre(pojo);
+	}
+	
+	public Livre(String nom, String description, double prix, int qte, String image) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.prix = prix;
+		this.qte = qte;
+		this.image = image;
 	}
 
 	public String getNom() {
@@ -63,6 +74,12 @@ public class Livre {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	@Override
+	public String toString() {
+		return "Livre [nom=" + nom + ", description=" + description + ", prix=" + prix + ", qte=" + qte + ", image="
+				+ image + "]";
 	}
 
 }

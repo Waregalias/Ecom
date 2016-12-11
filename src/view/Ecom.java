@@ -1,8 +1,10 @@
 package view;
 
 import java.util.Arrays;
+import java.util.List;
 
 import controller.Manager;
+import model.Livre;
 
 public class Ecom {
 	
@@ -18,9 +20,8 @@ public class Ecom {
 	}
 	
 	public void afficher() {
-		String[] tmp = null;
+		List<Livre> tmp = null;
 		tmp = Manager.getInstance().afficherLivres();
 		Arrays.asList(tmp).forEach(System.out::println);
 	}
-	
 }
