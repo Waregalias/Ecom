@@ -1,14 +1,28 @@
 package model;
 
+import service.LivrePOJO;
+import storage.Dao;
+
 public class Livre {
 	private String nom;
 	private String description;
 	private double prix;
-	private short qte;
+	private int qte;
 	private String image;
+	
+	private int cle;
+	private Livre modele;
+	private LivrePOJO pojo;
+	private Dao<LivrePOJO> dao;
 
 	public Livre() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Livre(int id, Dao<LivrePOJO> d) {
+		cle = id;
+		dao = d;
+		pojo = d.select(id);
 	}
 
 	public String getNom() {
@@ -35,7 +49,7 @@ public class Livre {
 		this.prix = prix;
 	}
 
-	public short getQte() {
+	public int getQte() {
 		return qte;
 	}
 

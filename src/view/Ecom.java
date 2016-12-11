@@ -1,5 +1,9 @@
 package view;
 
+import java.util.Arrays;
+
+import controller.Manager;
+
 public class Ecom {
 	
 	public Ecom() {
@@ -7,7 +11,16 @@ public class Ecom {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated constructor stub
+		Ecom ecom = null;
+		ecom = new Ecom();
+		
+		ecom.afficher();
+	}
+	
+	public void afficher() {
+		String[] tmp = null;
+		tmp = Manager.getInstance().afficherLivres();
+		Arrays.asList(tmp).forEach(System.out::println);
 	}
 	
 }

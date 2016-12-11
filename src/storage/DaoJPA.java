@@ -12,7 +12,7 @@ public class DaoJPA<T> implements Dao<T>  {
 	private EntityManager cat;
 	public DaoJPA() {
 		System.out.println("=============== OUTPUT Source::JPA ===============");
-		cat = Persistence.createEntityManagerFactory("zoo").createEntityManager();
+		cat = Persistence.createEntityManagerFactory("categorie").createEntityManager();
 	}
 	
 	@Override
@@ -27,9 +27,9 @@ public class DaoJPA<T> implements Dao<T>  {
 
 	@Override
 	public void edit(T obj) {
-		//em.getTransaction().begin();
+		cat.getTransaction().begin();
 		cat.merge(obj);
-		//em.getTransaction().commit();
+		cat.getTransaction().commit();
 
 	}
 

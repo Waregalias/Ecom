@@ -2,26 +2,38 @@ package controller;
 
 import java.util.List;
 
-import service.CategoriePOJO;
+import model.Livre;
+import service.LivrePOJO;
 import storage.Dao;
 import storage.DaoJPA;
 
 public class Manager {
-
+	private static Manager instance = new Manager();
+	private Dao<?> dao = new DaoJPA<LivrePOJO>();
+	public List<Livre> lesLivres;
+	
 	public Manager() {
-		// TODO Auto-generated constructor stub
+		init();
+	}
+	
+	public static Manager getInstance() {
+		return instance;
 	}
 	
 	public void init() {
-		/*Dao<CategoriePOJO> dao = null;
-		dao = (Dao<CategoriePOJO>) DaoFactory.getInstance().getDao(DaoType.JPA);
+		Dao<LivrePOJO> dao = null;
+		dao = (Dao<LivrePOJO>) getInstance().dao;
 		
-		List<CategoriePOJO> tmp = null;
-		tmp = (List<CategoriePOJO>) dao.selectAll();
-		for(CategoriePOJO cp : tmp)
+		List<LivrePOJO> tmp = null;
+		tmp = (List<LivrePOJO>) dao.selectAll();
+		for(LivrePOJO lp : tmp)
 		{
-			lesCages.add(new CageManager(cp.getIdAnimal(), dao));
-		}*/
+			lesLivres.add(new Livre(lp.getId(), dao));
+		}
 	}
-
+	
+	public String[] afficherLivres() {
+		return null;
+		
+	}
 }
