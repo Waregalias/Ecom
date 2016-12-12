@@ -13,10 +13,17 @@ public class Manager {
 	private static Manager instance = new Manager();
 	private Dao<?> dao = new DaoJPA<LivrePOJO>();
 	public List<LivreManager> lesLivres;
+	public Livre monLivre;
 	
 	public Manager() {
 		lesLivres = new Vector<>();
 		init();
+		
+		// TODO: INTEGRER LES FONCTIONS ajouterProduit(...)
+		// DU PANIER DANS LE MANAGER
+		monLivre = new Livre();
+		monLivre = lesLivres.get(1).reserverLivre();
+		lesLivres.get(1).lacherLivre();
 	}
 	
 	public static Manager getInstance() {
@@ -38,4 +45,6 @@ public class Manager {
 	public List<LivreManager> afficherLivres() {
 		return lesLivres;
 	}
+	
+	
 }

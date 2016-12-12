@@ -26,4 +26,17 @@ public class LivreManager {
 	public String toString() {
 		return "LivreManager [cle=" + cle + ", model=" + model + "]";
 	}
+	
+	public Livre reserverLivre() {
+		Livre ret = null;
+		pojo.setQte(pojo.getQte()-1);
+		dao.edit(pojo);
+		return ret;
+	}
+	
+	public void lacherLivre() {
+		Livre ret = null;
+		pojo.setQte(pojo.getQte()+1);
+		dao.edit(pojo);
+	}
 }

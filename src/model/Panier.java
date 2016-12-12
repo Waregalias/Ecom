@@ -14,6 +14,12 @@ public class Panier {
 	private float uprix;
 	private float total;
 
+	// APPELER LES FONCTIONS DU LIVREMANAGER
+	// POUR L'ECHANGE AVEC LA DAO
+	
+	// LE MODEL PANIER ACTUEL EFFECTUE UNIQUEMENT
+	// LES CONTROLES D'AFFICHAGE
+	
 	public Panier() {
 		panier = new HashMap<>();
 		uprix = 0;
