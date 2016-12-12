@@ -10,21 +10,9 @@ public class Livre {
 	private double prix;
 	private int qte;
 	private String image;
-	
-	private int cle;
-	private Livre model;
-	private LivrePOJO pojo;
-	private Dao<LivrePOJO> dao;
 
 	public Livre() {
 		// TODO Auto-generated constructor stub
-	}
-	
-	public Livre(int id, Dao<LivrePOJO> d) {
-		cle = id;
-		dao = d;
-		pojo = d.select(id);
-		model = Conversion.pojoToLivre(pojo);
 	}
 	
 	public Livre(String nom, String description, double prix, int qte, String image) {

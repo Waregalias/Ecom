@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.Manager;
 import model.Livre;
+import technique.LivreManager;
 
 public class Ecom {
 	
@@ -20,7 +21,7 @@ public class Ecom {
 	}
 	
 	public void afficher() {
-		List<Livre> tmp = null;
+		List<LivreManager> tmp = null;
 		tmp = Manager.getInstance().afficherLivres();
 		Arrays.asList(tmp).forEach(System.out::println);
 	}

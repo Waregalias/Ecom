@@ -17,7 +17,7 @@ public class DaoJPA<T> implements Dao<T>  {
 	
 	@Override
 	public T select(int id) {
-		return (T) em.createNamedQuery("produit.Select").setParameter("key",id).getSingleResult();
+		return (T) em.createNamedQuery("produit.Select").setParameter("cle",id).getSingleResult();
 	}
 
 	@Override

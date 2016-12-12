@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="categorie")
 @NamedQueries ({
 	@NamedQuery(name="categorie.All", query="SELECT categorie FROM CategoriePOJO as categorie"),
-	@NamedQuery(name="categorie.Select", query="SELECT categorie FROM CategoriePOJO categorie WHERE categorie.id = :key")
+	@NamedQuery(name="categorie.Select", query="SELECT categorie FROM CategoriePOJO categorie WHERE categorie.id = :cle")
 })
 public class CategoriePOJO implements Serializable {
 	private static final long serialVersionUID = 1L;
