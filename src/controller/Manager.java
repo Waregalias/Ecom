@@ -19,6 +19,7 @@ import oreilly.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
+	private Dao<?> dao = new DaoJPA<LivrePOJO>();
 	public List<LivreManager> lesLivres;
 	public Livre monLivre;
 	
@@ -39,10 +40,10 @@ public class Manager {
 	
 	public void init() {
 		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) dao;
+		dao = (Dao<LivrePOJO>) this.dao;
 
 		ajouterLivres(dao);
-		readDaoEJB();
+		//readDaoEJB();
 
 	}
 	
