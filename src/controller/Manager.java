@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Vector;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,19 +20,17 @@ import oreilly.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
-	private Dao<?> dao = new DaoJPA<LivrePOJO>();
 	public List<LivreManager> lesLivres;
 	public Livre monLivre;
+	@EJB
+	private Dao<LivrePOJO> dao;
 	
 	public Manager() {
 		lesLivres = new Vector<>();
 		init();
 		
-		// TODO: INTEGRER LES FONCTIONS ajouterProduit(...)
-		// DU PANIER DANS LE MANAGER
-		monLivre = new Livre();
-		monLivre = lesLivres.get(1).reserverLivre();
-		lesLivres.get(1).lacherLivre();
+		reserverLivres();
+		//rendreLivres();
 	}
 	
 	public static Manager getInstance() {
@@ -39,12 +38,37 @@ public class Manager {
 	}
 	
 	public void init() {
-		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) this.dao;
-
+		try {
+			dao = InitialContext.doLookup("java:module/DaoJPA");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ajouterLivres(dao);
-		//readDaoEJB();
-
+		readDaoEJB();
+	}
+	
+	private void readDaoEJB() {
+		DaoJPARemote dao = null;
+		InitialContext contexte = null;
+		Properties env = null;
+		
+		try {
+//			env = new Properties();
+//		    env.put("jboss.naming.client.ejb.context", true); 
+//		    env.put(Context.INITIAL_CONTEXT_FACTORY, InitialContextFactory.class.getName());
+//			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
+//			contexte = new InitialContext(env);
+			dao = InitialContext.doLookup("java:global/oreilly/DaoJPA!oreilly.storage.DaoJPARemote"); 
+			ajouterLivres(dao);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<LivreManager> afficherLivres() {
+		return lesLivres;
 	}
 	
 	public void ajouterLivres(Dao<LivrePOJO> dao) {
@@ -56,27 +80,12 @@ public class Manager {
 		}
 	}
 	
-	public List<LivreManager> afficherLivres() {
-		return lesLivres;
+	public void reserverLivres() { // ajouter un paramètre LivrePOJO
+		lesLivres.get(0).reserverLivre(); // changer le paramètre get(*) par l'id du LivrePOJO
 	}
 	
-	private void readDaoEJB() {
-		DaoJPARemote dao = null;
-		InitialContext contexte = null;
-		Properties env = null;
+	public void rendreLivres() { // ajouter un paramètre LivrePOJO
+		lesLivres.get(0).lacherLivre(); // changer le paramètre get(*) par l'id du LivrePOJO
+	}
 		
-		try {
-			env = new Properties();
-		    env.put("jboss.naming.client.ejb.context", true); 
-		    env.put(Context.INITIAL_CONTEXT_FACTORY, InitialContextFactory.class.getName());
-			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
-			contexte = new InitialContext(env);
-			dao = (DaoJPARemote) contexte.lookup("//oreillyDS/DaoJPA!oreilly.DaoJPARemote");
-			ajouterLivres(dao);
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 }

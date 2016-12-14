@@ -16,7 +16,6 @@ public class Ecom {
 	public static void main(String[] args) {
 		Ecom ecom = null;
 		ecom = new Ecom();
-		
 		ecom.afficher();
 	}
 	
