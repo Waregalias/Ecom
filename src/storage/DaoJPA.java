@@ -2,14 +2,10 @@ package storage;
 
 import java.util.List;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
-@Stateless
-@LocalBean
 public class DaoJPA<T> implements Dao<T>  {
 
 	@PersistenceContext(name="ecom")
@@ -34,18 +30,15 @@ public class DaoJPA<T> implements Dao<T>  {
 		em.getTransaction().begin();
 		em.merge(obj);
 		em.getTransaction().commit();
-
 	}
 
 	@Override
 	public void delete(T obj) {
 		em.remove(obj);
-
 	}
 
 	@Override
 	public void insert(T obj) {
 		em.persist(obj);
 	}
-
 }
