@@ -1,5 +1,6 @@
 package storage;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -8,15 +9,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import service.LivrePOJO;
+
 @Stateless
 @LocalBean
-public class DaoJPA<T> implements Dao<T>  {
+public class DaoJPA<T> implements Dao<T>, Serializable  {
 
 	@PersistenceContext(name="ecom")
 	private EntityManager em;
 	public DaoJPA() {
 		System.out.println("=============== OUTPUT Source::JPA ===============");
-		em = Persistence.createEntityManagerFactory("Ecom").createEntityManager();
 	}
 	
 	@Override
@@ -31,10 +33,7 @@ public class DaoJPA<T> implements Dao<T>  {
 
 	@Override
 	public void edit(T obj) {
-		em.getTransaction().begin();
 		em.merge(obj);
-		em.getTransaction().commit();
-
 	}
 
 	@Override
