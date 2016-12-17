@@ -15,13 +15,15 @@ import model.Livre;
 import service.LivrePOJO;
 import storage.Dao;
 import storage.DaoJPA;
+import storage.DaoJPARemote;
 import technique.LivreManager;
-import oreilly.DaoJPARemote;
 
 public class Manager {
 	private static Manager instance = new Manager();
-	public List<LivreManager> lesLivres;
-	private Dao<?> dao = new DaoJPA<LivrePOJO>();
+	private List<LivreManager> lesLivres;
+	private int rank; 
+	@EJB
+	private Dao<LivrePOJO> dao;
 	
 	public Manager() {
 		lesLivres = new Vector<>();
@@ -36,25 +38,22 @@ public class Manager {
 	}
 	
 	public void init() {
-		Dao<LivrePOJO> dao = null;
-		dao = (Dao<LivrePOJO>) this.dao;
+		try {
+			rank=0;
+			dao = InitialContext.doLookup("java:module/DaoJPA");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ajouterLivres(dao);
-		//readDaoEJB();
+		readDaoEJB();
 	}
 	
 	private void readDaoEJB() {
 		DaoJPARemote dao = null;
-		InitialContext contexte = null;
-		Properties env = null;
-		
 		try {
-			env = new Properties();
-		    env.put("jboss.naming.client.ejb.context", true); 
-		    env.put(Context.INITIAL_CONTEXT_FACTORY, InitialContextFactory.class.getName());
-			env.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
-			contexte = new InitialContext(env);
-			dao = InitialContext.doLookup("java:global/oreilly/DaoJPA!oreilly.storage.DaoJPARemote"); 
+			dao = InitialContext.doLookup("java:global/Oreilly/DaoJPA!storage.DaoJPARemote");
 			ajouterLivres(dao);
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -70,7 +69,8 @@ public class Manager {
 		tmp = (List<LivrePOJO>) dao.selectAll();
 		for(LivrePOJO lp : tmp)
 		{
-			lesLivres.add(new LivreManager(lp.getId(), dao));
+			lesLivres.add(new LivreManager(rank, lp.getId(), dao));
+			rank++;
 		}
 	}
 	

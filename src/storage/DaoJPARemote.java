@@ -1,10 +1,11 @@
-package oreilly;
+package storage;
 
 import java.util.List;
 
-import service.LivrePOJO;
-import storage.Dao;
+import javax.ejb.Remote;
 
+import service.LivrePOJO;
+@Remote
 public interface DaoJPARemote extends Dao<LivrePOJO> {
 	public LivrePOJO select(int id);
 	public List<LivrePOJO> selectAll();

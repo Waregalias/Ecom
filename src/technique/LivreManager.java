@@ -15,8 +15,8 @@ public class LivreManager {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public LivreManager(int id, Dao<LivrePOJO> d) {
-		cle = id;
+	public LivreManager(int rank, int id, Dao<LivrePOJO> d) {
+		cle = rank;
 		dao = d;
 		pojo = d.select(id);
 		model = Conversion.pojoToLivre(pojo);
@@ -38,5 +38,21 @@ public class LivreManager {
 		Livre ret = null;
 		pojo.setQte(pojo.getQte()+1);
 		dao.edit(pojo);
+	}
+
+	public int getCle() {
+		return cle;
+	}
+
+	public void setCle(int cle) {
+		this.cle = cle;
+	}
+
+	public Livre getLivre() {
+		return model;
+	}
+
+	public void setModel(Livre model) {
+		this.model = model;
 	}
 }
