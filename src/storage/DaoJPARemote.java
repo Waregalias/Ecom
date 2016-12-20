@@ -13,5 +13,4 @@ public interface DaoJPARemote extends Dao<LivrePOJO> {
 	public void edit(LivrePOJO obj);
 	public void delete(LivrePOJO obj);
 	public void insert (LivrePOJO obj);
-
 }

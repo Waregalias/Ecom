@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.CategoriePOJO;
+import technique.CategorieManager;
 import technique.LivreManager;
 
 /**
@@ -30,10 +32,16 @@ public class TestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<LivreManager> test = Manager.getInstance().afficherLivres();
-		for (LivreManager l : test) {
-			System.out.println(l.toString());
+//		List<LivreManager> test = Manager.getInstance().afficherLivres();
+//		for (LivreManager l : test) {
+//			System.out.println(l.toString());
+//		}
+		
+		List<CategorieManager> cat = Manager.getInstance().afficherCategories();
+		for (CategorieManager c : cat) {
+			System.out.println(c.toString());
 		}
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

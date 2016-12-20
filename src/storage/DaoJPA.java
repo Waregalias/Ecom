@@ -30,6 +30,16 @@ public class DaoJPA<T> implements Dao<T>, Serializable  {
 	public List<T> selectAll() {
 		return em.createNamedQuery("produit.All").getResultList();
 	}
+	
+	@Override
+	public T categorie(int id) {
+		return (T) em.createNamedQuery("categorie.Select").setParameter("cle",id).getSingleResult();
+	}
+	
+	@Override
+	public List<T> categorieAll() {
+		return em.createNamedQuery("categorie.All").getResultList();
+	}
 
 	@Override
 	public void edit(T obj) {

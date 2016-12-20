@@ -9,6 +9,13 @@ public class Categorie {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Categorie(String nom, String description, String image) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.image = image;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -32,4 +39,10 @@ public class Categorie {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	@Override
+	public String toString() {
+		return "Categorie [nom=" + nom + ", description=" + description + ", image=" + image + "]";
+	}
+	
 }
