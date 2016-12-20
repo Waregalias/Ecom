@@ -7,8 +7,6 @@ import java.util.Map.Entry;
 import service.LivrePOJO;
 
 public class Panier {
-	// Panier doit être unique à chaque lancement
-	private static Panier instance = new Panier();
 	private static float LIVRAISON = 23;
 	private Map<LivrePOJO, Integer> panier;
 	private float uprix;
@@ -26,7 +24,7 @@ public class Panier {
 		total = 0;
 	}
 	
-	public void ajouterProduit(LivrePOJO livre) {
+	public void ajouterLivre(LivrePOJO livre) {
 		// TODO: Tester qu'on en ajoute pas + que la limite
 		if(panier.containsKey(livre.getId())) {
 			panier.put(livre, panier.get(livre)+1);
@@ -36,7 +34,7 @@ public class Panier {
 		}
 	}
 	
-	public void supprimerProduit(Livre livre) {
+	public void supprimerLivre(LivrePOJO livre) {
 		panier.remove(livre, 1);
 	}
 	

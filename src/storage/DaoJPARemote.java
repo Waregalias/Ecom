@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import service.LivrePOJO;
+
 @Remote
 public interface DaoJPARemote extends Dao<LivrePOJO> {
 	public LivrePOJO select(int id);

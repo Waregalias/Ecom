@@ -76,7 +76,7 @@ public class LivrePOJO implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	
 	public CategoriePOJO getCategorie() {
 		return categorie;
 	}
@@ -84,6 +84,5 @@ public class LivrePOJO implements Serializable {
 	public void setCategorie(CategoriePOJO categorie) {
 		this.categorie = categorie;
 	}
-
 
 }

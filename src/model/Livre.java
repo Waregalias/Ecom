@@ -1,5 +1,6 @@
 package model;
 
+import service.CategoriePOJO;
 import service.LivrePOJO;
 import storage.Dao;
 import utilitaire.Conversion;

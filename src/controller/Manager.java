@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -12,6 +13,7 @@ import javax.naming.NamingException;
 import org.jboss.naming.remote.client.InitialContextFactory;
 
 import model.Livre;
+import model.Panier;
 import service.LivrePOJO;
 import storage.Dao;
 import storage.DaoJPA;
@@ -21,7 +23,8 @@ import technique.LivreManager;
 public class Manager {
 	private static Manager instance = new Manager();
 	private List<LivreManager> lesLivres;
-	private int rank; 
+	private Panier panier;
+	private int rank;
 	@EJB
 	private Dao<LivrePOJO> dao;
 	
@@ -74,12 +77,20 @@ public class Manager {
 		}
 	}
 	
-	public void reserverLivres() { // ajouter un paramètre LivrePOJO
-		lesLivres.get(0).reserverLivre(); // changer le paramètre get(*) par l'id du LivrePOJO
+	public void createPanier() {
+		panier = new Panier();
 	}
 	
-	public void rendreLivres() { // ajouter un paramètre LivrePOJO
-		lesLivres.get(0).lacherLivre(); // changer le paramètre get(*) par l'id du LivrePOJO
+	public void payerLivres() {
+		
+	}
+	
+	public void reserverLivres() {
+		panier.ajouterLivre(lesLivres.get(0).reserverLivre()); //replace (0) par id livre issue de la servlet
+	}
+	
+	public void rendreLivres() {
+		panier.supprimerLivre(lesLivres.get(0).lacherLivre()); //replace (0) par id livre issue de la servlet
 	}
 		
 }

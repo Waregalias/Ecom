@@ -27,17 +27,16 @@ public class LivreManager {
 		return "LivreManager [cle=" + cle + ", model=" + model + "]";
 	}
 	
-	public Livre reserverLivre() {
-		Livre ret = null;
+	public LivrePOJO reserverLivre() {
 		pojo.setQte(pojo.getQte()-1);
 		dao.edit(pojo);
-		return ret;
+		return pojo;
 	}
 	
-	public void lacherLivre() {
-		Livre ret = null;
+	public LivrePOJO lacherLivre() {
 		pojo.setQte(pojo.getQte()+1);
 		dao.edit(pojo);
+		return pojo;
 	}
 
 	public int getCle() {
