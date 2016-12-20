@@ -58,7 +58,7 @@ public class Manager {
 			e.printStackTrace();
 		}
 		
-		createCategories(daoCat);
+		ajouterCategories(daoCat);
 		ajouterLivres(dao);
 		readDaoEJB();
 	}
@@ -92,7 +92,7 @@ public class Manager {
 		}
 	}
 	
-	public void createCategories(Dao<CategoriePOJO> daoCat) {
+	public void ajouterCategories(Dao<CategoriePOJO> daoCat) {
 		List<CategoriePOJO> tmp = null;
 		tmp = daoCat.categorieAll();
 		
@@ -107,15 +107,15 @@ public class Manager {
 	}
 	
 	public void payerLivres() {
-		
+		panier = null;
 	}
 	
-	public void reserverLivres() {
-		panier.ajouterLivre(lesLivres.get(0).reserverLivre()); //replace (0) par id livre issue de la servlet
+	public void reserverLivres(int idLivre) {
+		panier.ajouterLivre(lesLivres.get(idLivre).reserverLivre()); //replace (0) par id livre issue de la servlet
 	}
 	
-	public void rendreLivres() {
-		panier.supprimerLivre(lesLivres.get(0).lacherLivre()); //replace (0) par id livre issue de la servlet
+	public void rendreLivres(int idLivre) {
+		panier.supprimerLivre(lesLivres.get(idLivre).lacherLivre()); //replace (0) par id livre issue de la servlet
 	}
 		
 }

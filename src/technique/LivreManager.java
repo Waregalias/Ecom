@@ -1,5 +1,6 @@
 package technique;
 
+import model.Categorie;
 import model.Livre;
 import service.LivrePOJO;
 import storage.Dao;

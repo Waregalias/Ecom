@@ -8,21 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class systemServlet
+ * Servlet implementation class AddPanierServlet
  */
-@WebServlet(
-		name = "SystemServlet", 
-		urlPatterns = { 
-				"/SystemServlet", 
-				"/system"
-		})
-public class systemServlet extends HttpServlet {
+@WebServlet({ "/AddPanierServlet", "/add" })
+public class AddPanierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public systemServlet() {
+    public AddPanierServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +26,12 @@ public class systemServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("model", Manager.getInstance().afficherLivres());
-		request.getRequestDispatcher("system.jsp").forward(request, response);
+		int idLivre = 0;
+		idLivre = Integer.parseInt(request.getParameter("idLivre"));
+		
+		Manager.getInstance().reserverLivres(idLivre);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

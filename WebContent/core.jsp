@@ -25,7 +25,7 @@
 	<div class="caddie">
 	<section>
 		<article>
-			<form name="f" action="caddie.ctrl.php" method="post">
+			<form action="add" method="post" name="add">
 			<table>
 				<c:forEach var="livre" items="${model}">
 				</c:forEach>
@@ -39,15 +39,16 @@
 					<th>Ajouter au panier</th>
 				</tr>
 				<c:forEach var="livre" items="${model}">
-				<tr>
-					<td class="id">${livre.getCle()}</td>
-					<td><img alt="" src="images/${livre.getLivre().getImage()}"></td>
-					<td>${livre.getLivre().getNom()}</td>
-					<td class="description">${livre.getLivre().getDescription()}</td>
-					<td class="prix">${livre.getLivre().getPrix()}&euro;</td>
-					<td><input type="number" name="nombre" value="1" max="${livre.getLivre().getQte()}"></td>
-					<td><a href=""><img src="images/cart.png"></a></td>
-				</tr>
+					<tr>
+						<td class="id">${livre.getCle()}</td>
+						<td><img alt="" src="images/${livre.getLivre().getImage()}"></td>
+						<td>${livre.getLivre().getNom()}</td>
+						<td class="description">${livre.getLivre().getDescription()}</td>
+						<td class="prix">${livre.getLivre().getPrix()}&euro;</td>
+						<td><input type="number" name="nombre" value="1" max="${livre.getLivre().getQte()}"></td>
+						<td style="display: none"><input name="idLivre" value="${livre.getCle()}"/></td>
+						<td><a href="add" onClick="add.Submit();"><img src="images/cart.png"></a></td>
+					</tr>
 				</c:forEach>
 			</table>
 			</form>
@@ -58,40 +59,16 @@
 					<th colspan="4">Votre panier</th>
 				</tr>
 				<tr>
-					<th>Nom</th>
-					<th>Qt&eacute;</th>
-					<th>Prix unitaire</th>
-					<th>Sous total</th>
-				</tr>
-				<tr>
-					<td>html et xhtml</td>
-					<td>1</td>
-					<td>35&euro;</td>
-					<td>35&euro;</td>
-				</tr>
-				<tr>
-					<td>mysql</td>
-					<td>1</td>
-					<td>62&euro;</td>
-					<td>62&euro;</td>
-				</tr>
-				<tr>
-					<td>postgresql</td>
-					<td>1</td>
-					<td>56&euro;</td>
-					<td>56&euro;</td>
-				</tr>
-				<tr>
 					<th colspan="2">Sous total</th>
-					<td colspan="2">153&euro;</td>
+					<td colspan="2">0&euro;</td>
 				</tr>
 				<tr>				
 					<th colspan="2">Livraison</th>
-					<td colspan="2">23&euro;</td>
+					<td colspan="2">0&euro;</td>
 				</tr>
 				<tr>
 					<th colspan="2">Total</th>
-					<td colspan="2">176&euro;</td>
+					<td colspan="2">0&euro;</td>
 				</tr>				
 			</table>
 			<p class="bnt">

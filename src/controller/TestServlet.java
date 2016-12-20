@@ -32,10 +32,10 @@ public class TestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		List<LivreManager> test = Manager.getInstance().afficherLivres();
-//		for (LivreManager l : test) {
-//			System.out.println(l.toString());
-//		}
+		List<LivreManager> test = Manager.getInstance().afficherLivres();
+		for (LivreManager l : test) {
+			System.out.println(l.toString());
+		}
 		
 		List<CategorieManager> cat = Manager.getInstance().afficherCategories();
 		for (CategorieManager c : cat) {
