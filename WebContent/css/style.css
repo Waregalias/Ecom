@@ -72,6 +72,11 @@ img{
 	max-width: 150px;
 	text-align: center;
 }
+.addcart {
+	width: 35px;
+	height: 35px;
+	background: url(../images/cart.png) no-repeat;
+}
 .caddie{
 	margin: auto;
 	min-width: 800px;

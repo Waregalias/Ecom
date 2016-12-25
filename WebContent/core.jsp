@@ -25,7 +25,7 @@
 	<div class="caddie">
 	<section>
 		<article>
-			<form action="add" method="post" name="add">
+			
 			<table>
 				<c:forEach var="livre" items="${model}">
 				</c:forEach>
@@ -39,19 +39,20 @@
 					<th>Ajouter au panier</th>
 				</tr>
 				<c:forEach var="livre" items="${model}">
+				<form action="add" method="post" name="add">
 					<tr>
 						<td class="id">${livre.getCle()}</td>
 						<td><img alt="" src="images/${livre.getLivre().getImage()}"></td>
 						<td>${livre.getLivre().getNom()}</td>
 						<td class="description">${livre.getLivre().getDescription()}</td>
 						<td class="prix">${livre.getLivre().getPrix()}&euro;</td>
-						<td><input type="number" name="nombre" value="1" max="${livre.getLivre().getQte()}"></td>
+						<td><input type="number" name="nombre" value="1" min="1" max="${livre.getLivre().getQte()}"></td>
 						<td style="display: none"><input name="idLivre" value="${livre.getCle()}"/></td>
-						<td><a href="add" onClick="add.Submit();"><img src="images/cart.png"></a></td>
+						<td><input class="addcart" type="submit" value=""/></td>
 					</tr>
+				</form>
 				</c:forEach>
 			</table>
-			</form>
 		</article>
 		<aside>
 			<table id="panier" style="visibility:block;">

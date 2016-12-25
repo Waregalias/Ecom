@@ -54,13 +54,14 @@ public class Manager {
 			dao = InitialContext.doLookup("java:module/DaoJPA");
 			daoCat = InitialContext.doLookup("java:module/DaoJPA");
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		ajouterCategories(daoCat);
 		ajouterLivres(dao);
 		readDaoEJB();
+		
+		reserverLivres(0);
 	}
 	
 	private void readDaoEJB() {
@@ -111,11 +112,11 @@ public class Manager {
 	}
 	
 	public void reserverLivres(int idLivre) {
-		panier.ajouterLivre(lesLivres.get(idLivre).reserverLivre()); //replace (0) par id livre issue de la servlet
+		panier.ajouterLivre(lesLivres.get(idLivre).reserverLivre());
 	}
 	
 	public void rendreLivres(int idLivre) {
-		panier.supprimerLivre(lesLivres.get(idLivre).lacherLivre()); //replace (0) par id livre issue de la servlet
+		panier.supprimerLivre(lesLivres.get(idLivre).lacherLivre());
 	}
 		
 }
