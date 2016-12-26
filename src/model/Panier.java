@@ -25,7 +25,6 @@ public class Panier {
 	}
 	
 	public void ajouterLivre(LivrePOJO livre) {
-		// TODO: Tester qu'on en ajoute pas + que la limite
 		if(panier.containsKey(livre.getId())) {
 			panier.put(livre, panier.get(livre)+1);
 		}

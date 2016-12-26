@@ -26,6 +26,7 @@ public class initServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Manager.reset();
 		request.setAttribute("model", Manager.getInstance().afficherLivres());
 		request.getRequestDispatcher("core.jsp").forward(request, response);
 	}

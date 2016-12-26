@@ -39,13 +39,14 @@ public class Manager {
 		lesLivres = new Vector<>();
 		lesCategories = new Vector<>();
 		init();
-		
-		//reserverLivres();
-		//rendreLivres();
 	}
 	
 	public static Manager getInstance() {
 		return instance;
+	}
+	
+	public static void reset() {
+		instance = new Manager();
 	}
 	
 	public void init() {
@@ -60,8 +61,6 @@ public class Manager {
 		ajouterCategories(daoCat);
 		ajouterLivres(dao);
 		readDaoEJB();
-		
-		reserverLivres(0);
 	}
 	
 	private void readDaoEJB() {
@@ -112,11 +111,13 @@ public class Manager {
 	}
 	
 	public void reserverLivres(int idLivre) {
-		panier.ajouterLivre(lesLivres.get(idLivre).reserverLivre());
+		lesLivres.get(idLivre).reserverLivre();
+		//panier.ajouterLivre(lesLivres.get(idLivre).reserverLivre());
 	}
 	
 	public void rendreLivres(int idLivre) {
-		panier.supprimerLivre(lesLivres.get(idLivre).lacherLivre());
+		lesLivres.get(idLivre).lacherLivre();
+		//panier.supprimerLivre(lesLivres.get(idLivre).lacherLivre());
 	}
 		
 }
